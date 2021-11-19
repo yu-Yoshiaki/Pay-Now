@@ -1,15 +1,16 @@
 module.exports = {
-  purge: ['./src/**/*.{js,ts,jsx,tsx}'],
+  purge: ["./src/**/*.{ts,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       backgroundImage: {
         "image-checkout": "url('/checkout.jpg')",
-    },},
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [require("tailwind-scrollbar-hide"),],
+  plugins: [require("tailwind-scrollbar-hide")],
   mode: "jit",
-}
+};
