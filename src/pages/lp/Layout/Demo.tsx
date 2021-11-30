@@ -52,7 +52,7 @@ export const Demo: CustomNextPage<Props> = (props) => {
         <div className="mx-auto space-y-4 w-full">
           <h3 className="py-5 px-2 rounded-md ring-1 ring-gray-300">
             <p className="pb-4 text-xl font-bold">ご購入ありがとうございます。</p>
-            <p className="text-xs text-left ">
+            <p className="overflow-hidden text-xs text-left">
               <strong>チケット購入履歴(※)</strong> の方で、チケットのご確認ができます。
               ご利用の際は、上記(※)から該当のチケットをお見せください。
             </p>
@@ -60,9 +60,7 @@ export const Demo: CustomNextPage<Props> = (props) => {
 
           <div className="flex p-4 space-x-2 text-white bg-green-700 rounded-md">
             <p className="text-xl font-bold">5:00</p>
-            <p className="text-xs text-left break-all">
-              決済確定までの時間です。時間内では商品の追加、変更、キャンセルが可能です。
-            </p>
+            <p className="overflow-hidden text-xs text-left">決済確定までの時間です。</p>
           </div>
 
           <CancelButton />
