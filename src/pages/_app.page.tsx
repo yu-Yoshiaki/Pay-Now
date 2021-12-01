@@ -14,7 +14,7 @@ const App = (props: CustomAppProps) => {
   return (
     <>
       <Head>
-        <title>Pay Now</title>
+        <title>BUYBUY Now</title>
       </Head>
       {getLayout(<props.Component {...props.pageProps} />)}
     </>
