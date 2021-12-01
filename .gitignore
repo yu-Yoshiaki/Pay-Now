@@ -33,6 +33,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Optional eslint cache
+.eslintcache
+
 # typescript
 *.tsbuildinfo
 node_modules
+
+src/hooks
+src/pages/api/*
+src/lib
