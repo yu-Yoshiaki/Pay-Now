@@ -11,7 +11,9 @@
     "fix": "run-s -l -c fix:eslint fix:prettier",
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "cypress": "cypress open",
+    "cypress:run": "cypress run"
   },
   "babel": {
     "presets": [
@@ -47,9 +49,11 @@
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "autoprefixer": "^10.4.0",
+    "cypress": "^9.1.0",
     "eslint": "7.32.0",
     "eslint-config-next": "12.0.3",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import-access": "^1.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-tailwindcss": "^1.17.2",
