@@ -7,6 +7,7 @@ import { useGetStripeMaterials } from "src/hooks/useGetStripeMaterials";
 import { Header } from "src/pages/lp/Layout/Header";
 
 import { Cart } from "./Cart";
+import { MainField } from "./MainField";
 import { Materials } from "./Materials";
 
 export const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
@@ -19,20 +20,20 @@ const Index: CustomNextPage = () => {
   const [itemList, setItemList] = useState<{ id: number; productid: string; image: string }[]>([]);
   const [itemListNumber, setItemListNumber] = useState(0);
 
-  // const testItem: { id: number; productid: string }[] = [
-  //   { id: Math.random() * 11, productid: `Tshirts${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `watch${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `phone${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `melon${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `bannan${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `lemon${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `coke${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `beer${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `meet${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `car${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `fish${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `home${Math.random() * 11}` },
-  //   { id: Math.random() * 11, productid: `ticket${Math.random() * 11}` },
+  // const testItem: { id: string; name: string }[] = [
+  //   { id: "prod_KXSBHxeY7TwFs4", name: `Tshirts` },
+  //   { id: "prod_Kfzuvy8rA5cGHk", name: `watch` },
+  //   { id: "prod_ueol6FLHgjakj0", name: `phone` },
+  //   // { id: "", name: `melon` },
+  //   // { id: "", name: `bannan` },
+  //   // { id: "", name: `lemon` },
+  //   // { id: "", name: `coke` },
+  //   // { id: "", name: `beer` },
+  //   // { id: "", name: `meet` },
+  //   // { id: "", name: `car` },
+  //   // { id: "", name: `fish` },
+  //   // { id: "", name: `home` },
+  //   // { id: "", name: `ticket` },
   // ];
 
   useEffect(() => {
@@ -89,6 +90,7 @@ const Index: CustomNextPage = () => {
 
   return (
     <div>
+      <div className=" py-3 w-full text-center bg-yellow-400">ベータ版になります。実際に購入することはできません。</div>
       <Header>
         <button
           onClick={handleOpenCart}
@@ -97,7 +99,8 @@ const Index: CustomNextPage = () => {
           Cart
         </button>
       </Header>
-      <div className="text-center md:h-[600px]">
+      <MainField />
+      <div className="p-8 text-center md:h-[600px]">
         {products.map((product) => {
           // const [purchased, isPurchased] = useState(false);
 
@@ -112,6 +115,7 @@ const Index: CustomNextPage = () => {
               <button
                 onClick={() => {
                   return handleCountup({ id: product.id, image: product.images[0] });
+                  // return handleCountup({ id: product.id, image: "/no_image.jpg" });
                 }}
                 className="p-3 active:p-2 w-full h-12 active:text-lg text-white bg-green-500 rounded-md"
               >
