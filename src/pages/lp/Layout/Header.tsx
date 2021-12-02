@@ -23,7 +23,9 @@ export const Header: VFC<{
         {items.map((item) => {
           return (
             <Link key={item.href} href={item.href}>
-              <a className="inline-block p-5 text-lg font-bold hover:text-white hover:bg-blue-600">{item.label}</a>
+              <a className="inline-block p-5 hover:p-4 text-lg hover:text-xl font-bold hover:text-blue-600">
+                {item.label}
+              </a>
             </Link>
           );
         })}
