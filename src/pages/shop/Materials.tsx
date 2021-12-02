@@ -30,13 +30,13 @@ export const Materials = (props: Props) => {
   }, []);
 
   return (
-    <div className="inline-block relative p-4 mx-5 w-[318px] bg-white rounded-md shadow-xl">
+    <div className="inline-block relative p-4 mx-5 w-[318px] bg-white rounded-md border shadow-xl">
       <div className="flex justify-between mb-4">
         <h3 className="text-lg truncate">{props.name}</h3>
         <p className="py-1 px-2 text-sm text-center bg-gray-300 rounded-3xl">Demo</p>
       </div>
 
-      <Image src={props.images[0]} alt={"腕時計"} width={280} height={300} />
+      <Image src={props.images[0]} alt={props.name} width={280} height={300} />
       <p className="p-2 text-lg">1-click checkout の購入体験</p>
 
       {isPurchase ? (
@@ -51,12 +51,6 @@ export const Materials = (props: Props) => {
           LOGIN
         </button>
       )}
-
-      {/* {isPurchased && (
-        <div className="absolute -right-3 bottom-36">
-          <PurchasedWindow time={props.time} />
-        </div>
-      )} */}
     </div>
   );
 };
