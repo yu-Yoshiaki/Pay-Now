@@ -12,7 +12,7 @@ type Props = {
 
 export const Cart: VFC<Props> = (props) => {
   return (
-    <div className="flex fixed top-0 right-0 bottom-0 z-20 flex-col space-y-3 w-[350px] border">
+    <div className="flex fixed top-12 right-0 bottom-0 z-20 flex-col space-y-3 w-[350px] bg-white border">
       <div className="flex justify-between p-1 bg-white border-b">
         <h1 className="p-4 w-[100px] text-2xl font-bold">Cart</h1>
         <button
