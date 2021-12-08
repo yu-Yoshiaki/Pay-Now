@@ -39,7 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 node_modules
-
-src/hooks
-src/pages/api/*
-src/lib

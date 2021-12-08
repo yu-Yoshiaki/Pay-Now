@@ -5,9 +5,13 @@ import { useEffect } from "react";
 const Home: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/lp");
+    router.push("/shop");
   });
-  return <div></div>;
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
 };
 
 export default Home;

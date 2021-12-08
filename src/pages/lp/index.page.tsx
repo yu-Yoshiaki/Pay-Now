@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import type { CustomNextPage } from "next";
 
-import { Demo, Header, MainField } from "./Layout";
+import { Demo, Header, MainField } from "./layout";
 
 const items = [
   { id: 1, name: "watch", price: 3000, image: "/watch.jpeg" },

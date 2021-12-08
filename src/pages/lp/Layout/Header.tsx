@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactChild, VFC } from "react";
+import { ServiceName } from "src/lib/serviceName";
 
 // type Props = {
 //   childlen?: ReactChild;
@@ -13,22 +14,26 @@ export const Header: VFC<{
     { href: "/", label: "CONTACT" },
   ];
   return (
-    <div className="flex justify-between items-center">
+    <header className="flex justify-between items-center w-full bg-white border-b">
       <h1 className="p-5 text-3xl font-bold text-left">
-        <Link key={"/lp"} href={"/lp"}>
-          Pay Now
+        <Link key={"/"} href={"/"}>
+          {ServiceName}
         </Link>{" "}
       </h1>
-      <div className="hidden mr-5 md:block">
-        {items.map((item) => {
-          return (
-            <Link key={item.href} href={item.href}>
-              <a className="inline-block p-5 text-lg font-bold hover:text-white hover:bg-blue-600">{item.label}</a>
-            </Link>
-          );
-        })}
+      <div className="flex mr-2 md:mr-5">
+        <div className="hidden md:block">
+          {items.map((item) => {
+            return (
+              <Link key={item.href} href={item.href}>
+                <a className="inline-block p-5 hover:p-4 text-lg hover:text-xl font-bold hover:text-blue-600">
+                  {item.label}
+                </a>
+              </Link>
+            );
+          })}
+        </div>
         {props.children && <div className="inline-block">{props.children}</div>}
       </div>
-    </div>
+    </header>
   );
 };
