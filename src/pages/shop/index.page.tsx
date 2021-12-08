@@ -8,10 +8,10 @@ import { useGetStripeMaterials } from "src/hooks/useGetStripeMaterials";
 import { useItemList } from "src/hooks/useItemList";
 import { useSWRState } from "src/hooks/useSWRState";
 import { useTimer } from "src/hooks/useTimer";
-import { Footer } from "src/pages/lp/layout";
-import { Header } from "src/pages/lp/layout";
 
 import { Cart } from "./Cart";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 import { MainField } from "./MainField";
 import { MaterialsList } from "./MaterialsList";
 import { OpenCartButton } from "./OpenCartButton";

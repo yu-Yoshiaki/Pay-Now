@@ -1,7 +1,8 @@
 import { useRouter } from "next/dist/client/router";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Header } from "src/pages/lp/layout";
+
+import { Header } from "./Header";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
