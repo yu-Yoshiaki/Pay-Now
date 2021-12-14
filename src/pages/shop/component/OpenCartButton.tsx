@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const OpenCartButton: VFC<Props> = (props) => {
-  const { data: isCartView, mutate: onCartView } = useSWRState("isCartView", false);
+  const [isCartView, onCartView] = useSWRState("isCartView", false);
 
   const handleOpenCart = useCallback(() => {
     onCartView(!isCartView);

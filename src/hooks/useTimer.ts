@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { useCallback, useEffect, useState } from "react";
 
-export const useTimer = (count = 300) => {
+export const useTimer = (count = 3) => {
   const [isStartFlag, setStartFlag] = useState(false);
   const [time, setTime] = useState(count);
   const [isComplete, setComplete] = useState(false);
@@ -34,5 +34,5 @@ export const useTimer = (count = 300) => {
 
   console.log("time: ", time);
 
-  return { time, timerStart, isComplete };
+  return { time, timerStart, isComplete, reset };
 };

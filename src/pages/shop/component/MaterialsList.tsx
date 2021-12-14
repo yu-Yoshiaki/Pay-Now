@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-handler-names */
 import { useRouter } from "next/dist/client/router";
 import Image from "next/image";
-import { useCanPurchase } from "src/hooks/useCanPurchase";
 import { useHasPurchased } from "src/hooks/useHasPurchased";
+import { useUser } from "src/hooks/useUser";
 
 import { PurchasedWindow } from "./PurchasedWindow";
 
@@ -15,8 +15,8 @@ type Props = {
 };
 
 export const MaterialsList = (props: Props) => {
+  const { user } = useUser();
   const router = useRouter();
-  const { isAvail } = useCanPurchase();
   const { hasPurchased, setHasPurchased } = useHasPurchased(props.time);
 
   const handleClick = () => {
@@ -34,20 +34,23 @@ export const MaterialsList = (props: Props) => {
       <Image src={props.images[0]} alt={props.name} width={280} height={300} />
       <p className="p-2 text-lg">1-click checkout の購入体験</p>
 
-      {isAvail ? (
-        <button onClick={handleClick} className="p-3 w-full h-12 text-white bg-green-500 rounded-md">
-          Buy Now
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            return router.push("/shop/login");
-          }}
-          className="p-3 w-full h-12 text-white bg-blue-500 rounded-md"
-        >
-          LOGIN
-        </button>
-      )}
+      <div className="space-x-2">
+        {user ? (
+          <button onClick={handleClick} className="p-3 w-[45%] h-12 text-white bg-green-500 rounded-md">
+            Buy Now
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              return router.push("/shop/login");
+            }}
+            className="p-3 w-[45%] h-12 text-white bg-blue-500 rounded-md"
+          >
+            LOGIN
+          </button>
+        )}
+        <button className="p-3 w-[45%] h-12 bg-gray-200 rounded-md">Detail</button>
+      </div>
 
       {hasPurchased && (
         <div className="absolute -right-3 bottom-36">

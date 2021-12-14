@@ -1,8 +1,11 @@
 /* eslint-disable no-console */
 import { useEffect, useState } from "react";
 
+// import { useItemList } from "./useItemList";
+
 export const useHasPurchased = (time: number) => {
   const [hasPurchased, setHasPurchased] = useState(false);
+  // const { isItemList } = useItemList();
 
   useEffect(() => {
     if (time <= 0)

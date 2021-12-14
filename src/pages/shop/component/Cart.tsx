@@ -5,7 +5,7 @@ import type { ReactChild, VFC } from "react";
 
 type Props = {
   time: number;
-  itemsList: { id: number; productid: string; image?: string }[];
+  itemsList: { id: number; productid: string; image?: string }[] | undefined;
   onClick: (id: number) => void;
   children: ReactChild;
 };
@@ -19,7 +19,7 @@ export const Cart: VFC<Props> = (props) => {
       </div>
 
       <div className="flex overflow-scroll flex-col items-center pb-[90px] space-y-4 text-center scrollbar-hide">
-        {props.itemsList.map((itemList) => {
+        {props.itemsList?.map((itemList) => {
           return (
             <div key={itemList.id} className="relative p-4 w-[240px] bg-white rounded-md border shadow-xl">
               <div className="flex justify-between mb-4">

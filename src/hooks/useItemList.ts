@@ -1,7 +1,15 @@
 import { useCallback, useState } from "react";
 
+import { useSWRState } from "./useSWRState";
+
+type ItemList = {
+  id: number;
+  productid: string;
+  image: string;
+}[];
+
 export const useItemList = () => {
-  const [isItemList, setItemList] = useState<{ id: number; productid: string; image: string }[]>([]);
+  const [isItemList, setItemList] = useSWRState<ItemList>("items", []);
   const [key, setKey] = useState(0);
 
   const addItem = useCallback(
@@ -10,7 +18,7 @@ export const useItemList = () => {
       setKey(key + 1);
       return;
     },
-    [isItemList, key]
+    [isItemList, key, setItemList]
   );
 
   const removeItem = useCallback(
@@ -20,7 +28,7 @@ export const useItemList = () => {
       });
       setItemList(result);
     },
-    [isItemList]
+    [isItemList, setItemList]
   );
 
   return { isItemList, removeItem, addItem };

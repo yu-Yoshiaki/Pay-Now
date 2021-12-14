@@ -1,1 +1,1 @@
-export const ServiceName = "ZERO PAY";
+export const ServiceName = "ZEROPP";
