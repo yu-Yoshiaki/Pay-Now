@@ -16,11 +16,13 @@ const Login: CustomNextPage = () => {
       try {
         const res = await signInWithEmailAndPassword(auth, e.email, e.password);
         if (res.user) return router.push("/shop");
-      } catch (error) {
-        const errorCode = error.code;
+      } catch {
+        // const errorCode = error.code;
         // const errorMessage = error.message;
-        console.log(errorCode);
-        return error;
+        // console.log(errorCode);
+        // return error;
+        console.log("error");
+        return;
       }
     },
     [router]
@@ -32,22 +34,6 @@ const Login: CustomNextPage = () => {
     },
     [login]
   );
-
-  // const onSubmit = useCallback(
-  //   async (data) => {
-  //     const res = await fetch("/api/loginOrSignup", {
-  //       method: "POST",
-  //       body: data.email,
-  //     });
-  //     const json = await res.json();
-  //     console.log("login", json);
-
-  //     if (json.error) return;
-
-  //     router.push(`/shop/?email=${json.email}`);
-  //   },
-  //   [router]
-  // );
 
   return (
     <div>

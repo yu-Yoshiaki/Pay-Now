@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { auth } from "src/lib/firebase";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse<any>) => {
   if (req.method === "POST") {
     try {
       // const body = JSON.parse(req.body);
@@ -13,21 +13,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const password = body.password;
 
       const response = await createUserWithEmailAndPassword(auth, email, password);
-      // const user = response.user;
-      // await addDoc(collection(firestore, "user"), {
-      //   id: user.uid,
-      //   stripeId,
-      // });
-
-      // const ref = {
-      //   email,
-      //   password,
-      //   stripeId,
-      // };
 
       res.status(200).json(response.user);
-    } catch (err) {
-      res.status(err.statusCode || 500).json(err.message);
+    } catch {
+      res.status(500).json("error");
     }
     res.status(200).json({ test: "test" });
   }
