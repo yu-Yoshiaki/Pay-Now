@@ -3,7 +3,7 @@ import type { VFC } from "react";
 
 const links = [
   { href: "/", text: "Profile" },
-  { href: "/address", text: "Address" },
+  { href: "/", text: "Address" },
   { href: "/payment", text: "Payment" },
 ];
 
