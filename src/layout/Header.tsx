@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { useRouter } from "next/dist/client/router";
+import Image from "next/image";
 import Link from "next/link";
 import type { VFC } from "react";
 import { useUser } from "src/hooks/useUser";
@@ -36,10 +37,14 @@ export const Header: VFC = () => {
         </Link>{" "}
       </h1>
       {user ? (
-        <div>
-          <Link href="/account">
-            <a>{user.email}としてログインしています</a>
-          </Link>
+        <div className="flex space-x-3">
+          <div className="rounded-full hover:ring">
+            <Link href="/account">
+              <a>
+                <Image src={"/no_image.jpg"} alt={"profile image"} width={60} height={50} className="rounded-full" />
+              </a>
+            </Link>
+          </div>
           <button onClick={handleSignOut} className="text-blue-400">
             SignOut
           </button>
