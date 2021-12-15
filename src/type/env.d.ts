@@ -11,5 +11,7 @@ declare namespace NodeJS {
     readonly NEXT_PUBLIC_FIREBASE_MESSAGE_SENDER_ID: string;
     readonly NEXT_PUBLIC_FIREBASE_APP_ID: string;
     readonly NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: string;
+    readonly NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_EMAIL: string;
+    readonly NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_PASSWORD: string;
   }
 }
