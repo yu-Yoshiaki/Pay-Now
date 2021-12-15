@@ -10,7 +10,7 @@ export const ShopLayout: CustomLayout = (page) => {
         <Header />
       </div>
 
-      <main className="py-28">{page}</main>
+      <main className="py-16">{page}</main>
       <Footer />
     </div>
   );
