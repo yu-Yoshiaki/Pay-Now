@@ -43,6 +43,7 @@ const Login: CustomNextPage = () => {
           {...register("email")}
           placeholder="email"
           autoComplete="email"
+          defaultValue={process.env.NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_EMAIL}
           className="py-4 px-5 mx-auto mb-5 w-full text-lg rounded-md border border-black"
         />
         <input
@@ -50,6 +51,7 @@ const Login: CustomNextPage = () => {
           type="password"
           placeholder="password"
           autoComplete="password"
+          defaultValue={process.env.NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_PASSWORD}
           className="py-4 px-5 mx-auto mb-5 w-full text-lg rounded-md border border-black"
         />
         <input type="submit" className="py-6 px-8 hover:bg-green-200" />
