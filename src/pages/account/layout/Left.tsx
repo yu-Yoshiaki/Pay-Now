@@ -9,7 +9,7 @@ const links = [
 
 export const Left: VFC = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex md:flex-col">
       {links.map((link) => {
         return (
           <Link key={link.href} href={`/account${link.href}`}>

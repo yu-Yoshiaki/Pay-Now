@@ -12,7 +12,7 @@ export const TwitterLayout: CustomLayout = (page) => {
         <Header />
       </div>
 
-      <main className="grid grid-cols-[auto,50%,auto] p-12 pt-[160px] space-x-5 min-h-screen bg-gray-100">
+      <main className="p-3 pt-[160px] min-h-screen bg-gray-100 md:grid md:grid-cols-[auto,50%,auto] md:p-12 md:space-x-5">
         <Left />
         {page}
       </main>
