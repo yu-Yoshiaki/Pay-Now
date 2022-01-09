@@ -80,7 +80,7 @@ const Home: NextPage = () => {
               </a>
             </Link>{" "}
           </h1>
-          <h2>カートの無いショッピングサイト</h2>
+          <h2>レジの無いショッピングサイト</h2>
         </div>
       </header>
       <main className="pt-20 w-full bg-image-checkout">
