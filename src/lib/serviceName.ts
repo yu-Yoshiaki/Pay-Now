@@ -1,1 +1,1 @@
-export const ServiceName = "ZEROPP";
+export const ServiceName = "α-release";
