@@ -1,63 +1,66 @@
 /* eslint-disable no-console */
-import { signInWithEmailAndPassword } from "firebase/auth";
+// import { signInWithEmailAndPassword } from "firebase/auth";
 import type { CustomNextPage } from "next";
 import { useRouter } from "next/dist/client/router";
-import { useCallback } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { auth } from "src/lib/firebase";
+// import { auth } from "src/lib/firebase";
 import { ShopLayout } from "src/pages/shop/layout/ShopLayout";
 
 const Login: CustomNextPage = () => {
   const { register, handleSubmit } = useForm();
   const router = useRouter();
+  const [isEmail, setEmail] = useState(process.env.NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_EMAIL);
+  const [isPassword, setPassword] = useState(process.env.NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_PASSWORD);
 
-  const login = useCallback(
-    async (e: { email: string; password: string }) => {
-      try {
-        const res = await signInWithEmailAndPassword(auth, e.email, e.password);
-        if (res.user) return router.push("/shop");
-      } catch {
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        // console.log(errorCode);
-        // return error;
-        console.log("error");
-        return;
-      }
-    },
-    [router]
-  );
+  /* 
+    本番用 
+  
+  const login = useCallback(async () => {
+    try {
+      const res = await signInWithEmailAndPassword(auth, isEmail, isPassword);
+      res.user && router.replace("/shop");
+    } catch (error) {
+      console.log("error", error);
+      return;
+    }
+  }, [isEmail, isPassword, router]);
 
-  const onSubmit = useCallback(
-    (e) => {
-      login(e);
-    },
-    [login]
-  );
+  */
+
+  const login = () => {
+    router.push("/shop");
+  };
 
   return (
     <div>
       <h2 className="p-10 text-3xl font-bold text-center">ログイン</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="p-10 mx-auto max-w-[800px] text-center">
+      <form onSubmit={handleSubmit(login)} className="p-10 mx-auto max-w-[800px] text-center">
         <input
           {...register("email")}
           placeholder="email"
           autoComplete="email"
-          defaultValue={process.env.NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_EMAIL}
+          defaultValue={isEmail}
           className="py-4 px-5 mx-auto mb-5 w-full text-lg rounded-md border border-black"
+          // eslint-disable-next-line react/jsx-handler-names
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
         />
         <input
           {...register("password")}
           type="password"
           placeholder="password"
           autoComplete="password"
-          defaultValue={process.env.NEXT_PUBLIC_DEFAULT_FIREBASE_AUTH_PASSWORD}
+          defaultValue={isPassword}
           className="py-4 px-5 mx-auto mb-5 w-full text-lg rounded-md border border-black"
+          // eslint-disable-next-line react/jsx-handler-names
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
         <input type="submit" className="py-6 px-8 hover:bg-green-200" />
       </form>
-
-      {/* {user?.email} */}
     </div>
   );
 };
