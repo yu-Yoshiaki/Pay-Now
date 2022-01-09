@@ -7,7 +7,7 @@ const links = [
   { href: "/payment", text: "Payment" },
 ];
 
-export const Left: VFC = () => {
+export const Menu: VFC = () => {
   return (
     <div className="flex md:flex-col">
       {links.map((link) => {
