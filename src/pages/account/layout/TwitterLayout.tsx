@@ -2,7 +2,7 @@ import type { CustomLayout } from "next";
 import { Footer } from "src/layout/Footer";
 import { Header } from "src/layout/Header";
 
-import { Left } from "./Left";
+import { Menu } from "./Menu";
 
 export const TwitterLayout: CustomLayout = (page) => {
   return (
@@ -12,8 +12,8 @@ export const TwitterLayout: CustomLayout = (page) => {
         <Header />
       </div>
 
-      <main className="p-3 pt-[160px] min-h-screen bg-gray-100 md:grid md:grid-cols-[auto,50%,auto] md:p-12 md:space-x-5">
-        <Left />
+      <main className="p-3 pt-[160px] space-y-5 min-h-screen bg-gray-100 md:grid md:grid-cols-[auto,50%,auto] md:p-12 md:pt-[180px] md:space-x-5">
+        <Menu />
         {page}
       </main>
 
