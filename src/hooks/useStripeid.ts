@@ -1,3 +1,5 @@
+/* stripeid の グローバル化 */
+
 import { useSWRState } from "src/hooks/useSWRState";
 
 export const useStripeid = () => {
