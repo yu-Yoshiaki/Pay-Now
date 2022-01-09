@@ -1,38 +1,46 @@
 /* eslint-disable no-console */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
+import { useSWRState } from "src/hooks/useSWRState";
+/* 
+タイマー機能
+・起動
+・ストップ
+・リセット
+*/
+export const useTimer = (count = 60) => {
+  const [time, setTime] = useSWRState("/timer", count);
 
-export const useTimer = (count = 3) => {
-  const [isStartFlag, setStartFlag] = useState(false);
-  const [time, setTime] = useState(count);
-  const [isComplete, setComplete] = useState(false);
+  const [isStart, setStart] = useSWRState("/starttimer", false);
 
   const timerStart = useCallback(() => {
-    setStartFlag(true);
-  }, []);
+    setStart(true);
+  }, [setStart]);
 
-  const reset = useCallback(() => {
+  const timerStop = useCallback(() => {
+    setStart(false);
+  }, [setStart]);
+
+  const resetTimer = useCallback(() => {
+    setStart(false);
     setTime(count);
-    setComplete(false);
-    setStartFlag(false);
-  }, [count]);
+  }, [count, setStart, setTime]);
 
   useEffect(() => {
-    if (isComplete) return reset();
+    if (isStart) {
+      // 0になったらリセット
+      if (time < -0.1) {
+        resetTimer();
+        return;
+      }
 
-    if (!isStartFlag) return;
-    if (time <= 0) {
-      setComplete(true);
-      return;
+      const id = setInterval(() => {
+        return setTime(time - 0.1);
+      }, 100);
+      return () => {
+        return clearInterval(id);
+      };
     }
-    const id = setInterval(() => {
-      return setTime(time - 1);
-    }, 1000);
-    return () => {
-      return clearInterval(id);
-    };
-  }, [isComplete, isStartFlag, reset, time]);
+  }, [isStart, resetTimer, setTime, time]);
 
-  console.log("time: ", time);
-
-  return { time, timerStart, isComplete, reset };
+  return { time, timerStart, timerStop, resetTimer };
 };

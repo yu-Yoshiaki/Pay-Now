@@ -1,50 +1,48 @@
-/* eslint-disable tailwindcss/no-custom-classname */
-/* eslint-disable react/jsx-handler-names */
-import Image from "next/image";
-import type { ReactChild, VFC } from "react";
+import { useCallback, useState } from "react";
+import { usePurchaseList } from "src/hooks/usePurchaseList";
+import { useTimer } from "src/hooks/useTimer";
 
-type Props = {
-  time: number;
-  itemsList: { id: number; productid: string; image?: string }[] | undefined;
-  onClick: (id: number) => void;
-  children: ReactChild;
-};
+export const Cart = () => {
+  const { time } = useTimer();
+  const { isItemList } = usePurchaseList();
+  const [isDetailOpen, setDetailOpen] = useState(false);
 
-export const Cart: VFC<Props> = (props) => {
+  const handleClick = useCallback(() => {
+    setDetailOpen(!isDetailOpen);
+  }, [isDetailOpen]);
+
   return (
-    <div className="flex fixed top-12 right-0 bottom-0 z-20 flex-col space-y-3 w-[250px] bg-white border md:w-[350px]">
-      <div className="flex justify-between p-1 bg-white border-b">
-        <h1 className="p-4 w-[100px] text-2xl font-bold">Cart</h1>
-        {props.children}
-      </div>
-
-      <div className="flex overflow-scroll flex-col items-center pb-[90px] space-y-4 text-center scrollbar-hide">
-        {props.itemsList?.map((itemList) => {
-          return (
-            <div key={itemList.id} className="relative p-4 w-[240px] bg-white rounded-md border shadow-xl">
-              <div className="flex justify-between mb-4">
-                <h3 className="mr-3 text-lg truncate">購入ID：{itemList.productid}</h3>
-                <p className="py-1 px-2 text-sm text-center bg-gray-300 rounded-3xl">Demo</p>
-              </div>
-
-              <Image src={itemList.image ?? "/watch.jpeg"} alt={"腕時計"} width={280} height={300} />
-              <p className="p-2 text-lg">{itemList.productid}</p>
-              {/* {props.cancelButton({ value: "Cancel", id: itemList.id })} */}
-              <button
-                onClick={() => {
-                  return props.onClick(itemList.id);
-                }}
-                className="text-lg text-blue-500"
-              >
-                Cancel
-              </button>
+    <div className="fixed bottom-0 left-0 w-full bg-white ">
+      {isDetailOpen && (
+        <div className="border-t-2">
+          <div className=" mx-auto w-[90%] ">
+            <div className="flex justify-between py-2 mx-auto border-b-2">
+              <h3>カート内の商品</h3>
+              <button>すべて削除</button>
             </div>
-          );
-        })}
-      </div>
-      <p className="absolute bottom-0 p-6 w-full text-2xl text-center text-blue-500 bg-white">
-        決済完了まで {props.time} 秒
-      </p>
+            {isItemList.map((item) => {
+              return (
+                <div key={item.key} className="flex justify-between py-2">
+                  <div>{item.productid}</div>
+                  <div>{item.price} JPN</div>
+                  <div>{item.count}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <button className="flex justify-between items-center px-2 w-full border-2 shadow-lg" onClick={handleClick}>
+        <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#000000">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M15.55 13c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.94-2H1v2h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2h7.45zM6.16 6h12.15l-2.76 5H8.53L6.16 6zM7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+        </svg>
+
+        <p className="p-5 text-2xl text-center bg-white">
+          決済完了まで <span className="text-red-400">{Math.trunc(time + 0.3)}</span> 秒
+        </p>
+      </button>
     </div>
   );
 };

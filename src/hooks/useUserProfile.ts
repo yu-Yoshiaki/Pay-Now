@@ -1,51 +1,53 @@
+/*
+
+ firebase から ユーザー情報を取得
+ 
+*/
+
 /* eslint-disable no-console */
 import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import { useCallback, useState } from "react";
-import { useUser } from "src/hooks/useUser";
-import { firestore } from "src/lib/firebase";
+import { auth, firestore } from "src/lib/firebase";
 
-type UserProfile = {
-  firstName?: string;
-  lastName?: string;
-};
+import { useStripeid } from "./useStripeid";
 
 export const useUserProfile = () => {
-  const { user } = useUser();
-  const [profile, setProfile] = useState<UserProfile>({});
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const { stripeId, setStripeId } = useStripeid();
 
-  const setData = useCallback(
-    async ({ firstName, lastName }) => {
-      if (user) {
-        const colRef = collection(firestore, "user");
+  const user = auth.currentUser;
 
-        await setDoc<UserProfile>(doc(colRef, user.uid), {
-          firstName,
-          lastName,
-        });
-      }
-    },
-    [user]
-  );
-
-  // setD();
+  //firestoreからユーザー情報取得
   const getData = useCallback(async () => {
     if (user) {
       const docRef = doc(firestore, "user", user.uid);
-      const docSnap = await getDoc<UserProfile>(docRef);
+      const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        return setProfile({ firstName: docSnap.data().firstName, lastName: docSnap.data().lastName });
+        setFirstName(docSnap.data().firstName);
+        setLastName(docSnap.data().lastName);
+        setStripeId(docSnap.data().stripeId);
+        return console.log("Get Success");
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
         return;
       }
     }
-  }, [user]);
+  }, [setStripeId, user]);
 
-  // const setI = useCallback(() => {
-  //   return setProfile({ firstName: "yoh" });
-  // }, []);
+  //firestoreのユーザー情報変更
+  const setData = useCallback(async () => {
+    if (user) {
+      const colRef = collection(firestore, "user");
+      await setDoc(doc(colRef, user.uid), {
+        firstName,
+        lastName,
+        stripeId,
+      });
+    }
+  }, [firstName, lastName, stripeId, user]);
 
-  return { profile, getData, setData };
+  return { getData, setData, firstName, setFirstName, lastName, setLastName };
 };
