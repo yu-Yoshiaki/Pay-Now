@@ -4,6 +4,8 @@ import { Card } from "src/layout/Card";
 import { Footer } from "src/layout/Footer";
 import { ServiceName } from "src/lib/serviceName";
 
+//tech
+
 const products = [
   {
     id: "H0001K",
